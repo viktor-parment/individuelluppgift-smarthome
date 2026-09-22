@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeviceRepository {
-    private List<SmartDevice> devices = new ArrayList<>();
+    private final List<SmartDevice> devices = new ArrayList<>();
     public void add(SmartDevice device){
         devices.add(device);
     }
 
     public List<SmartDevice> getDevicesList() {
-        return devices;
+        return List.copyOf(devices);
     }
 }
 
