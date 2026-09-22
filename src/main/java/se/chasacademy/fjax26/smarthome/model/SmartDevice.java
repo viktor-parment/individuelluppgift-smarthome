@@ -11,7 +11,14 @@ public abstract class SmartDevice implements Activatable {
     private Clock clock;
 
     public SmartDevice(int id, String name, boolean active, Clock clock){
+        if (id <= 0){
+            throw new IllegalArgumentException("Id kan inte vara negativt eller noll.");
+        }
         this.id = id;
+
+        if (name.isBlank()){
+            throw new IllegalArgumentException("namn kan inte vara tomt.");
+        }
         this.name=name;
         this.active = active;
         this.clock = clock;

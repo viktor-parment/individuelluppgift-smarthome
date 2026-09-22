@@ -14,4 +14,8 @@ public class Camera extends SmartDevice{
         isRecording = !isRecording;
         return isRecording;
     }
+
+    public boolean isRecording() {
+        return isRecording;
+    }
 }
