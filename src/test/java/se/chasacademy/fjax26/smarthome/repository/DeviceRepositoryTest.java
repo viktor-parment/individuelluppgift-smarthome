@@ -42,5 +42,20 @@ public class DeviceRepositoryTest {
         //Act & Assert
         assertEquals(0, deviceRepository.getDevicesList().size());
     }
+
+    @Test
+    public void findDeviceByIdShouldReturnDeviceWithSameIdAsInput(){
+        //Arrange
+        DeviceRepository deviceRepository = new DeviceRepository();
+        deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
+        deviceRepository.add(new Camera(2, "Kök", true, Clock.systemDefaultZone()));
+        deviceRepository.add(new Lamp(3, "Toa", true, Clock.systemDefaultZone()));
+        //Act
+        SmartDevice found = deviceRepository.findDeviceById(3);
+
+        //Assert
+        assertEquals(3, found.getId());
+
+    }
 }
 

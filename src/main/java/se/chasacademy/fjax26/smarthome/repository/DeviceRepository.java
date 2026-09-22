@@ -14,5 +14,11 @@ public class DeviceRepository {
     public List<SmartDevice> getDevicesList() {
         return List.copyOf(devices);
     }
+
+    public SmartDevice findDeviceById(){
+
+        }
+    }
+
 }
 
