@@ -24,6 +24,10 @@ public abstract class SmartDevice implements Activatable {
         this.clock = clock;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public boolean activateDevice() {
         return setActive(true);
@@ -44,5 +48,9 @@ public abstract class SmartDevice implements Activatable {
         }
         this.active = active;
         return this.active;
+    }
+    @Override
+    public String toString(){
+        return String.format("ID:%d Name:%s, Active:", id, name, active);
     }
 }

@@ -14,12 +14,11 @@ public class DeviceRepositoryTest {
     public void addingADeviceShouldStoreItInList(){
         //Arrange
         DeviceRepository deviceRepository = new DeviceRepository();
-        deviceRepository.devices.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
 
         //Act
-        deviceRepository.devices.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
+        deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
 
         //Assert
-        assertEquals(1, deviceRepository.repository.size);
+        assertEquals(1, deviceRepository.getDevicesList().size());
     }
 }
