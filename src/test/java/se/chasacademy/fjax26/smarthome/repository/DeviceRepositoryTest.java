@@ -2,6 +2,7 @@ package se.chasacademy.fjax26.smarthome.repository;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import se.chasacademy.fjax26.smarthome.exception.DeviceNotFoundException;
 import se.chasacademy.fjax26.smarthome.model.Camera;
 import se.chasacademy.fjax26.smarthome.model.Lamp;
 import se.chasacademy.fjax26.smarthome.model.SmartDevice;
@@ -9,6 +10,7 @@ import se.chasacademy.fjax26.smarthome.model.SmartDevice;
 import java.time.Clock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DeviceRepositoryTest {
 
@@ -57,5 +59,18 @@ public class DeviceRepositoryTest {
         assertEquals(3, found.getId());
 
     }
+
+    @Test
+    public void findDeviceByIdShouldThrowExceptionWhenNoMatchIsFound(){
+        //Arrange
+        DeviceRepository deviceRepository = new DeviceRepository();
+        deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
+        deviceRepository.add(new Camera(2, "Kök", true, Clock.systemDefaultZone()));
+        deviceRepository.add(new Lamp(3, "Toa", true, Clock.systemDefaultZone()));
+        //Act & Assert
+        assertThrows(DeviceNotFoundException.class, () ->  deviceRepository.findDeviceById(4));
+    }
+
+    //TODO: fler tester TDD
 }
 
