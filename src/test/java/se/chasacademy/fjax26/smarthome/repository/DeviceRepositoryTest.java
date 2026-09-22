@@ -71,6 +71,6 @@ public class DeviceRepositoryTest {
         assertThrows(DeviceNotFoundException.class, () ->  deviceRepository.findDeviceById(4));
     }
 
-    //TODO: fler tester TDD
+    //TODO: fler tester. kom ihåg TDD...
 }
 
