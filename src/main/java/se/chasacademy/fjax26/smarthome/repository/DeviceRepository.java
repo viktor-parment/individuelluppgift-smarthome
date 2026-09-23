@@ -1,6 +1,7 @@
 package se.chasacademy.fjax26.smarthome.repository;
 
 import se.chasacademy.fjax26.smarthome.exception.DeviceNotFoundException;
+import se.chasacademy.fjax26.smarthome.exception.DuplicateDeviceIdException;
 import se.chasacademy.fjax26.smarthome.model.SmartDevice;
 
 import java.util.ArrayList;
@@ -10,6 +11,11 @@ public class DeviceRepository {
     private final List<SmartDevice> devices = new ArrayList<>();
 
     public void add(SmartDevice device) {
+        for (SmartDevice existingDevice : devices){
+            if (existingDevice.getId() == device.getId()){
+                throw new DuplicateDeviceIdException();
+            }
+        }
         devices.add(device);
     }
 

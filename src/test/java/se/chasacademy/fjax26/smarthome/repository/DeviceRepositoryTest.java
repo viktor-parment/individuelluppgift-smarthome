@@ -3,7 +3,7 @@ package se.chasacademy.fjax26.smarthome.repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import se.chasacademy.fjax26.smarthome.exception.DeviceNotFoundException;
-import se.chasacademy.fjax26.smarthome.exception.DuplicateDeviceException;
+import se.chasacademy.fjax26.smarthome.exception.DuplicateDeviceIdException;
 import se.chasacademy.fjax26.smarthome.model.Camera;
 import se.chasacademy.fjax26.smarthome.model.Lamp;
 import se.chasacademy.fjax26.smarthome.model.SmartDevice;
@@ -103,7 +103,7 @@ public class DeviceRepositoryTest {
         deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
 
         //Act & arrange
-        assertThrows(DuplicateDeviceException.class,
+        assertThrows(DuplicateDeviceIdException.class,
                 () -> deviceRepository.add(new Camera(1, "Kök", true, Clock.systemDefaultZone())));
 
 
