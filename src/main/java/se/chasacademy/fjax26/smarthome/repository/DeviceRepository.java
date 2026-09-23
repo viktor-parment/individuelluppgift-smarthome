@@ -26,6 +26,11 @@ public class DeviceRepository {
         devices.add(device);
     }
 
+    public void removeDevice(int id) {
+        SmartDevice device = findDeviceById(id); // kastar redan DeviceNotFoundException om den inte finns
+        devices.remove(device);
+    }
+
     public List<SmartDevice> getDevicesList() {
         return List.copyOf(devices);
     }
@@ -36,15 +41,16 @@ public class DeviceRepository {
                 return device;
             }
         }
-        throw new DeviceNotFoundException("Can't find a device with that ID");
+        throw new DeviceNotFoundException("Can't find a device with that ID.");
     }
+
     public SmartDevice findDeviceByName(String name) {
         for (SmartDevice device : devices) {
             if (name.equals(device.getName())) {
                 return device;
             }
         }
-        throw new DeviceNotFoundException("Can't find a device with that name");
+        throw new DeviceNotFoundException("Can't find a device with that name.");
     }
 }
 

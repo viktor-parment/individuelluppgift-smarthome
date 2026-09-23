@@ -20,8 +20,9 @@ public class DeviceRepositoryTest {
     public void setUp() {
         deviceRepository = new DeviceRepository();
     }
+
     @Test
-    public void addingADeviceShouldStoreItInList(){
+    public void addingADeviceShouldStoreItInList() {
         //Arrange with BeforeEach
 
         //Act
@@ -32,7 +33,7 @@ public class DeviceRepositoryTest {
     }
 
     @Test
-    public void getDeviceListShouldReturnTheWholeList(){
+    public void getDeviceListShouldReturnTheWholeList() {
         //Arrange with BeforeEach
 
         //Act
@@ -58,14 +59,14 @@ public class DeviceRepositoryTest {
     }
 
     @Test
-    public void getDeviceListShouldBeEmptyWhenNothingIsAdded(){
+    public void getDeviceListShouldBeEmptyWhenNothingIsAdded() {
         //Arrange with BeforeEach
         //Act & Assert
         assertEquals(0, deviceRepository.getDevicesList().size());
     }
 
     @Test
-    public void findDeviceByIdShouldReturnDeviceWithSameIdAsInput(){
+    public void findDeviceByIdShouldReturnDeviceWithSameIdAsInput() {
         //Arrange
         deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
         deviceRepository.add(new Camera(2, "Kök", true, Clock.systemDefaultZone()));
@@ -79,17 +80,17 @@ public class DeviceRepositoryTest {
     }
 
     @Test
-    public void findDeviceByIdShouldThrowExceptionWhenNoMatchIsFound(){
+    public void findDeviceByIdShouldThrowExceptionWhenNoMatchIsFound() {
         //Arrange
         deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
         deviceRepository.add(new Camera(2, "Kök", true, Clock.systemDefaultZone()));
         deviceRepository.add(new Lamp(3, "Toa", true, Clock.systemDefaultZone()));
         //Act & Assert
-        assertThrows(DeviceNotFoundException.class, () ->  deviceRepository.findDeviceById(4));
+        assertThrows(DeviceNotFoundException.class, () -> deviceRepository.findDeviceById(4));
     }
 
     @Test
-    public void getDeviceListShouldNotAllowExternalModification(){
+    public void getDeviceListShouldNotAllowExternalModification() {
         //Arrange
         deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
         //Act & Assert
@@ -98,7 +99,7 @@ public class DeviceRepositoryTest {
     }
 
     @Test
-    public void addingADeviceWithAnAlreadyExistingIdShouldThrowException(){
+    public void addingADeviceWithAnAlreadyExistingIdShouldThrowException() {
         //Arrange
         deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
 
@@ -109,7 +110,7 @@ public class DeviceRepositoryTest {
     }
 
     @Test
-    public void findDeviceByNameShouldReturnDeviceWithSameNameAsInput(){
+    public void findDeviceByNameShouldReturnDeviceWithSameNameAsInput() {
         //Arrange
         deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
 
@@ -121,7 +122,7 @@ public class DeviceRepositoryTest {
     }
 
     @Test
-    public void removeDeviceShouldRemoveDeviceFromList(){
+    public void removeDeviceShouldRemoveDeviceFromList() {
         //Arrange
         deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
 
@@ -133,7 +134,7 @@ public class DeviceRepositoryTest {
     }
 
     @Test
-    public void removeDeviceShouldOnlyRemoveTheSpecifiedDeviceFromList(){
+    public void removeDeviceShouldOnlyRemoveTheSpecifiedDeviceFromList() {
         //Arrange
         deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
         deviceRepository.add(new Camera(2, "Kök", true, Clock.systemDefaultZone()));
@@ -145,10 +146,10 @@ public class DeviceRepositoryTest {
         assertEquals(1, deviceRepository.getDevicesList().size());
         assertThrows(DeviceNotFoundException.class, () -> deviceRepository.findDeviceById(1));
 
-}
+    }
 
     @Test
-    public void removeDeviceThatDoesNotExistShouldThrowException(){
+    public void removeDeviceThatDoesNotExistShouldThrowException() {
         //Arrange
         deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
 
@@ -156,4 +157,5 @@ public class DeviceRepositoryTest {
         assertThrows(DeviceNotFoundException.class, () -> deviceRepository.removeDevice(5));
 
     }
+}
 
