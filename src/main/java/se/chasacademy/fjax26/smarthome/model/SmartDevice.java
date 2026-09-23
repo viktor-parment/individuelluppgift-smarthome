@@ -28,6 +28,10 @@ public abstract class SmartDevice implements Activatable {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean activateDevice() {
         return setActive(true);

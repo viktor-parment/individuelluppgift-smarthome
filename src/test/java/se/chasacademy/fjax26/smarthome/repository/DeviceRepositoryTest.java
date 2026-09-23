@@ -120,5 +120,40 @@ public class DeviceRepositoryTest {
         assertEquals("Hall", found.getName());
     }
 
+    @Test
+    public void removeDeviceShouldRemoveDeviceFromList(){
+        //Arrange
+        deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
+
+        //Act
+        deviceRepository.removeDevice(1);
+
+        //Assert
+        assertEquals(0, deviceRepository.getDevicesList().size());
+    }
+
+    @Test
+    public void removeDeviceShouldOnlyRemoveTheSpecifiedDeviceFromList(){
+        //Arrange
+        deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
+        deviceRepository.add(new Camera(2, "Kök", true, Clock.systemDefaultZone()));
+
+        //Act
+        deviceRepository.removeDevice(1);
+
+        //Assert
+        assertEquals(1, deviceRepository.getDevicesList().size());
+        assertThrows(DeviceNotFoundException.class, () -> deviceRepository.findDeviceById(1));
+
 }
+
+    @Test
+    public void removeDeviceThatDoesNotExistShouldThrowException(){
+        //Arrange
+        deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
+
+        //Act & Assert
+        assertThrows(DeviceNotFoundException.class, () -> deviceRepository.removeDevice(5));
+
+    }
 

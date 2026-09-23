@@ -38,6 +38,14 @@ public class DeviceRepository {
         }
         throw new DeviceNotFoundException("Can't find a device with that ID");
     }
+    public SmartDevice findDeviceByName(String name) {
+        for (SmartDevice device : devices) {
+            if (name.equals(device.getName())) {
+                return device;
+            }
+        }
+        throw new DeviceNotFoundException("Can't find a device with that name");
+    }
 }
 
 
