@@ -10,11 +10,18 @@ import java.util.List;
 public class DeviceRepository {
     private final List<SmartDevice> devices = new ArrayList<>();
 
-    public void add(SmartDevice device) {
-        for (SmartDevice existingDevice : devices){
-            if (existingDevice.getId() == device.getId()){
-                throw new DuplicateDeviceIdException();
+    private boolean exists(int id) {
+        for (SmartDevice device : devices) {
+            if (device.getId() == id) {
+                return true;
             }
+        }
+        return false;
+    }
+
+    public void add(SmartDevice device) {
+        if (exists(device.getId())) {
+            throw new DuplicateDeviceIdException("Device with id " + device.getId() + " already exists.");
         }
         devices.add(device);
     }
@@ -29,7 +36,7 @@ public class DeviceRepository {
                 return device;
             }
         }
-        throw new DeviceNotFoundException("Hittar ingen apparat med det ID:t");
+        throw new DeviceNotFoundException("Can't find a device with that ID");
     }
 }
 

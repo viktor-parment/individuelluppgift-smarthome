@@ -102,15 +102,23 @@ public class DeviceRepositoryTest {
         //Arrange
         deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
 
-        //Act & arrange
+        //Act & Arrange
         assertThrows(DuplicateDeviceIdException.class,
                 () -> deviceRepository.add(new Camera(1, "Kök", true, Clock.systemDefaultZone())));
 
-
     }
 
+    @Test
+    public void findDeviceByNameShouldReturnDeviceWithSameNameAsInput(){
+        //Arrange
+        deviceRepository.add(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
 
+        //Act
+        SmartDevice found = deviceRepository.findDeviceByName("Hall");
 
+        //Assert
+        assertEquals("Hall", found.getName());
+    }
 
 }
 
