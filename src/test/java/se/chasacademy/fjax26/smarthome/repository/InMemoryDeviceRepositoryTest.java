@@ -12,13 +12,13 @@ import java.time.Clock;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DeviceRepositoryTest {
+public class InMemoryDeviceRepositoryTest {
 
     private DeviceRepository deviceRepository;
 
     @BeforeEach
     public void setUp() {
-        deviceRepository = new DeviceRepository();
+        deviceRepository = new InMemoryDeviceRepository();
     }
 
     @Test
