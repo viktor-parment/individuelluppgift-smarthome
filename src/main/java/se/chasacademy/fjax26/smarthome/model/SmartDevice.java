@@ -20,13 +20,13 @@ public abstract class SmartDevice implements Activatable {
         }
         this.id = id;
 
-        if (name.isBlank()){
-            throw new IllegalArgumentException("namn kan inte vara tomt.");
+        if (name == null || name.isBlank()){
+            throw new IllegalArgumentException("namn kan inte vara tomt eller null.");
         }
         this.name=name;
         this.active = active;
         this.clock = clock;
-        this.installationDate = LocalDateTime.now();
+        this.installationDate = LocalDateTime.now(clock);
     }
 
     public int getId() {
