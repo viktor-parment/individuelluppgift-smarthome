@@ -64,6 +64,18 @@ public abstract class SmartDevice implements Activatable {
         return this.active;
     }
 
+    public LocalDateTime getInstallationDate() {
+        return installationDate;
+    }
+
+    public LocalDateTime getLastActivation() {
+        return lastActivation;
+    }
+
+    public LocalDateTime getLastDeactivation() {
+        return lastDeactivation;
+    }
+
     @Override
     public String toString(){
         return String.format("ID:%d Name:%s, Active:%b", id, name, active);
