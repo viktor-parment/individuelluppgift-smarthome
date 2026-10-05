@@ -6,6 +6,7 @@ import se.chasacademy.fjax26.smarthome.exception.DeviceStateException;
 
 import java.time.Clock;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -106,16 +107,72 @@ public class SmartDeviceTest {
         device.activateDevice();
         assertTrue(device.isActive());
     }
-
     @Test
-    void deviceShouldStoreTheProvidedClock() {
+    void creatingDeviceShouldSetInstallationDateUsingProvidedClock() {
         //Arrange
-        Clock fixedClock = Clock.fixed(Instant.parse("2025-01-01T10:00:00Z"), ZoneId.of("UTC"));
+        Clock fixedClock = Clock.fixed(Instant.parse("2025-03-10T09:00:00Z"), ZoneId.of("UTC"));
 
         //Act
         SmartDevice deviceWithFixedClock = new Lamp(2, "Kök", false, fixedClock);
 
         //Assert
-        assertNotNull(deviceWithFixedClock);
+        assertEquals(LocalDateTime.of(2025, 3, 10, 9, 0), deviceWithFixedClock.getInstallationDate());
+    }
+
+    @Test
+    void activatingDeviceShouldSetLastActivationUsingProvidedClock() {
+        //Arrange
+        Clock fixedClock = Clock.fixed(Instant.parse("2025-01-01T10:00:00Z"), ZoneId.of("UTC"));
+        SmartDevice deviceWithFixedClock = new Lamp(1, "Hall", false, fixedClock);
+
+        //Act
+        deviceWithFixedClock.activateDevice();
+
+        //Assert
+        assertEquals(LocalDateTime.of(2025, 1, 1, 10, 0), deviceWithFixedClock.getLastActivation());
+    }
+
+    @Test
+    void deactivatingDeviceShouldSetLastDeactivationUsingProvidedClock() {
+        //Arrange
+        Clock fixedClock = Clock.fixed(Instant.parse("2025-06-15T14:30:00Z"), ZoneId.of("UTC"));
+        SmartDevice deviceWithFixedClock = new Lamp(1, "Hall", true, fixedClock);
+
+        //Act
+        deviceWithFixedClock.deactivateDevice();
+
+        //Assert
+        assertEquals(LocalDateTime.of(2025, 6, 15, 14, 30), deviceWithFixedClock.getLastDeactivation());
+    }
+
+    @Test
+    void lastActivationShouldBeNullBeforeFirstActivation() {
+        //Arrange with BeforeEach (device starts inactive, never activated)
+
+        //Act & Assert
+        assertNull(device.getLastActivation());
+    }
+
+    @Test
+    void lastDeactivationShouldBeNullBeforeFirstDeactivation() {
+        //Arrange with BeforeEach (device starts inactive, never deactivated)
+
+        //Act & Assert
+        assertNull(device.getLastDeactivation());
+    }
+
+    @Test
+    void deactivatingAfterActivatingShouldUpdateBothTimestampsIndependently() {
+        //Arrange
+        Clock fixedClock = Clock.fixed(Instant.parse("2025-01-01T10:00:00Z"), ZoneId.of("UTC"));
+        SmartDevice deviceWithFixedClock = new Lamp(1, "Hall", false, fixedClock);
+
+        //Act
+        deviceWithFixedClock.activateDevice();
+        deviceWithFixedClock.deactivateDevice();
+
+        //Assert
+        assertEquals(LocalDateTime.of(2025, 1, 1, 10, 0), deviceWithFixedClock.getLastActivation());
+        assertEquals(LocalDateTime.of(2025, 1, 1, 10, 0), deviceWithFixedClock.getLastDeactivation());
     }
 }
