@@ -7,7 +7,7 @@ public class Lamp extends SmartDevice{
 
     public Lamp(int id, String name, boolean active, Clock clock) {
         super(id, name, active, clock);
-        brightness = 100;
+        setBrightness(100);
     }
 
     public void setBrightness(int brightness) {
