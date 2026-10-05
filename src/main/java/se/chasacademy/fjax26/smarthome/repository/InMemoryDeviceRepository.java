@@ -21,7 +21,7 @@ public class InMemoryDeviceRepository implements DeviceRepository {
     }
 
     @Override
-    public void add(SmartDevice device) {
+    public void addDevice(SmartDevice device) {
         if (exists(device.getId())) {
             throw new DuplicateDeviceIdException("Device with id " + device.getId() + " already exists.");
         }
