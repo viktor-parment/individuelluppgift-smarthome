@@ -6,15 +6,15 @@ public class Radiator extends SmartDevice {
 
     private double targetTemperature;
 
-    public Radiator(int id, String name, boolean active, Clock clock, double targetTemprature){
+    public Radiator(int id, String name, boolean active, Clock clock, double targetTemperature){
         super(id, name, active, clock);
-        if (targetTemprature < 0 || targetTemprature > 30){
-            throw new IllegalArgumentException("Måltemperaturen måste vara mellan 0 och 30 grader");
-        }
-        this.targetTemperature = targetTemprature;
+        setTargetTemperature(targetTemperature);
     }
 
     public void setTargetTemperature(double targetTemperature) {
+        if (targetTemperature < 0 || targetTemperature > 30){
+            throw new IllegalArgumentException("Måltemperaturen måste vara mellan 0 och 30 grader");
+        }
         this.targetTemperature = targetTemperature;
     }
 
