@@ -52,7 +52,7 @@ public class InMemoryDeviceRepository implements DeviceRepository {
     @Override
     public SmartDevice findDeviceByName(String name) {
         for (SmartDevice device : devices) {
-            if (name.equals(device.getName())) {
+            if (name.equalsIgnoreCase(device.getName())) {
                 return device;
             }
         }
