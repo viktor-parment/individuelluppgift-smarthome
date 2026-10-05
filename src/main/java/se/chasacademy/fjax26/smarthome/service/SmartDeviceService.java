@@ -41,7 +41,7 @@ public class SmartDeviceService {
         return repository.findDeviceByName(name);
     }
 
-    public List<SmartDevice> getDevicesList() {
-        return repository.getDevicesList();
+    public List<SmartDevice> getDeviceList() {
+        return repository.getDeviceList();
     }
 }

@@ -8,5 +8,5 @@ public interface DeviceRepository {
     void removeDevice(int id);
     SmartDevice findDeviceById(int id);
     SmartDevice findDeviceByName(String name);
-    List<SmartDevice> getDevicesList();
+    List<SmartDevice> getDeviceList();
 }

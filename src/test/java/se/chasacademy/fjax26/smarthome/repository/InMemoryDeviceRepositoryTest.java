@@ -29,7 +29,7 @@ public class InMemoryDeviceRepositoryTest {
         deviceRepository.addDevice(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
 
         //Assert
-        assertEquals(1, deviceRepository.getDevicesList().size());
+        assertEquals(1, deviceRepository.getDeviceList().size());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class InMemoryDeviceRepositoryTest {
         deviceRepository.addDevice(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
         deviceRepository.addDevice(new Camera(2, "Hall", true, Clock.systemDefaultZone()));
         //Assert
-        assertEquals(2, deviceRepository.getDevicesList().size());
+        assertEquals(2, deviceRepository.getDeviceList().size());
     }
 
     @Test
@@ -54,15 +54,15 @@ public class InMemoryDeviceRepositoryTest {
         deviceRepository.addDevice(camera);
 
         //Assert
-        assertTrue(deviceRepository.getDevicesList().contains(lamp));
-        assertTrue(deviceRepository.getDevicesList().contains(camera));
+        assertTrue(deviceRepository.getDeviceList().contains(lamp));
+        assertTrue(deviceRepository.getDeviceList().contains(camera));
     }
 
     @Test
     public void getDeviceListShouldBeEmptyWhenNothingIsAdded() {
         //Arrange with BeforeEach
         //Act & Assert
-        assertEquals(0, deviceRepository.getDevicesList().size());
+        assertEquals(0, deviceRepository.getDeviceList().size());
     }
 
     @Test
@@ -95,7 +95,7 @@ public class InMemoryDeviceRepositoryTest {
         deviceRepository.addDevice(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
         //Act & Assert
         assertThrows(UnsupportedOperationException.class,
-                () -> deviceRepository.getDevicesList().add(new Lamp(2, "Kök", true, Clock.systemDefaultZone())));
+                () -> deviceRepository.getDeviceList().add(new Lamp(2, "Kök", true, Clock.systemDefaultZone())));
     }
 
     @Test
@@ -130,7 +130,7 @@ public class InMemoryDeviceRepositoryTest {
         deviceRepository.removeDevice(1);
 
         //Assert
-        assertEquals(0, deviceRepository.getDevicesList().size());
+        assertEquals(0, deviceRepository.getDeviceList().size());
     }
 
     @Test
@@ -143,7 +143,7 @@ public class InMemoryDeviceRepositoryTest {
         deviceRepository.removeDevice(1);
 
         //Assert
-        assertEquals(1, deviceRepository.getDevicesList().size());
+        assertEquals(1, deviceRepository.getDeviceList().size());
         assertThrows(DeviceNotFoundException.class, () -> deviceRepository.findDeviceById(1));
 
     }

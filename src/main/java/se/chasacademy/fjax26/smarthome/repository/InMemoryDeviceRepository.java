@@ -35,7 +35,7 @@ public class InMemoryDeviceRepository implements DeviceRepository {
     }
 
     @Override
-    public List<SmartDevice> getDevicesList() {
+    public List<SmartDevice> getDeviceList() {
         return List.copyOf(devices);
     }
 
