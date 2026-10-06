@@ -22,6 +22,12 @@ java {
     }
 }
 
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "se.chasacademy.fjax26.smarthome.Main"
+    }
+}
+
 tasks.test {
     useJUnitPlatform()
 }
