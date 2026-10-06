@@ -16,4 +16,25 @@ public class ReportService {
         return repository.getDeviceList();
     }
 
+    public boolean isDeviceActive(int id) {
+        SmartDevice device = repository.findDeviceById(id);
+            return device.isActive();
+    }
+
+    public boolean isDeviceActive(String name) {
+        SmartDevice device = repository.findDeviceByName(name);
+            return device.isActive();
+    }
+
+    public long countActiveDevices() {
+        return repository.getDeviceList().stream()
+                .filter(SmartDevice::isActive)
+                .count();
+    }
+
+    public long countInactiveDevices() {
+        return repository.getDeviceList().stream()
+                .filter(device -> !device.isActive())
+                .count();
+    }
 }
