@@ -148,29 +148,4 @@ public class SmartDeviceServiceTest {
         verify(repository, never()).findDeviceByName(any());
     }
 
-    @Test
-    void getDevicesListShouldReturnListFromRepository(){
-        //Arrange
-        SmartDevice lamp = new Lamp(1, "Hall", true, Clock.systemDefaultZone());
-        Mockito.when(repository.getDeviceList()).thenReturn(java.util.List.of(lamp));
-
-        //Act
-        java.util.List<SmartDevice> result = service.getDeviceList();
-
-        //Assert
-        assertEquals(1, result.size());
-        assertEquals(lamp, result.get(0));
-    }
-
-    @Test
-    void getDevicesListShouldReturnEmptyListWhenRepositoryIsEmpty(){
-        //Arrange
-        Mockito.when(repository.getDeviceList()).thenReturn(java.util.List.of());
-
-        //Act
-        java.util.List<SmartDevice> result = service.getDeviceList();
-
-        //Assert
-        assertEquals(0, result.size());
-    }
 }

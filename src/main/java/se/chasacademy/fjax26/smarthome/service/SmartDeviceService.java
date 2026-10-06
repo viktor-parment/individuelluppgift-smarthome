@@ -4,8 +4,6 @@ package se.chasacademy.fjax26.smarthome.service;
 import se.chasacademy.fjax26.smarthome.model.SmartDevice;
 import se.chasacademy.fjax26.smarthome.repository.DeviceRepository;
 
-import java.util.List;
-
 public class SmartDeviceService {
     private final DeviceRepository repository;
 
@@ -41,7 +39,4 @@ public class SmartDeviceService {
         return repository.findDeviceByName(name);
     }
 
-    public List<SmartDevice> getDeviceList() {
-        return repository.getDeviceList();
-    }
 }
