@@ -23,7 +23,7 @@ public class Main {
         ReportService reportService = new ReportService(repository);
         Clock clock = Clock.systemDefaultZone();
 
-        println("Välkommen till SmartHome-demo!\n");
+        println("Welcome to SmartHome-demo!\n");
         println("Adding units...\n");
         Lamp lamp = new Lamp(1, "Hall", true, clock);
         Camera camera = new Camera(2, "Living room", true, clock);
