@@ -6,7 +6,7 @@ import se.chasacademy.fjax26.smarthome.repository.DeviceRepository;
 import java.util.List;
 
 public class ReportService {
-    private DeviceRepository repository;
+    private final DeviceRepository repository;
 
     public ReportService(DeviceRepository repository) {
         this.repository = repository;
