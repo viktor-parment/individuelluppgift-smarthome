@@ -1,5 +1,9 @@
 plugins {
     id("java")
+    application
+}
+application {
+    mainClass.set("se.chasacademy.fjax26.smarthome.Main")
 }
 
 group = "se.chasacademy.fjax26.smarthome"
