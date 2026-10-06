@@ -43,11 +43,9 @@ public class Main {
         camera.toggleRecording();
         println(camera);
 
-        println("\nTurning off both the lamp and the camera...");
+        println("\nTurning off the lamp...");
         lamp.deactivateDevice();
-        camera.deactivateDevice();
         println(lamp);
-        println(camera);
 
         println("\nSearching for device with name 'Bedroom'...");
         SmartDevice found = deviceService.findDeviceByName("Bedroom");
