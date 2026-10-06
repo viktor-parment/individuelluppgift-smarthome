@@ -13,7 +13,7 @@ public class RadiatorTest {
 
     @BeforeEach
     void setUp() {
-        radiator = new Radiator(1, "Vardagsrum", true, Clock.systemDefaultZone(), 20);
+        radiator = new Radiator(1, "Living room", true, Clock.systemDefaultZone(), 20);
     }
 
     @Test

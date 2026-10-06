@@ -102,17 +102,17 @@ public class ReportServiceTest {
     @Test
     void isDeviceActiveByNameWithNonExistentNameShouldPropagateException() {
         //Arrange
-        Mockito.when(repository.findDeviceByName("Okänd")).thenThrow(new DeviceNotFoundException("..."));
+        Mockito.when(repository.findDeviceByName("Unknown")).thenThrow(new DeviceNotFoundException("..."));
 
         //Act & Assert
-        assertThrows(DeviceNotFoundException.class, () -> reportService.isDeviceActive("Okänd"));
+        assertThrows(DeviceNotFoundException.class, () -> reportService.isDeviceActive("Unknown"));
     }
 
     @Test
     void countActiveDevicesShouldReturnCorrectCount() {
         //Arrange
         SmartDevice activeLamp = new Lamp(1, "Hall", true, Clock.systemDefaultZone());
-        SmartDevice inactiveCamera = new Camera(2, "Kök", false, Clock.systemDefaultZone());
+        SmartDevice inactiveCamera = new Camera(2, "Kitchen", false, Clock.systemDefaultZone());
         Mockito.when(repository.getDeviceList()).thenReturn(List.of(activeLamp, inactiveCamera));
 
         //Act
@@ -126,7 +126,7 @@ public class ReportServiceTest {
     void countInactiveDevicesShouldReturnCorrectCount() {
         //Arrange
         SmartDevice activeLamp = new Lamp(1, "Hall", true, Clock.systemDefaultZone());
-        SmartDevice inactiveCamera = new Camera(2, "Kök", false, Clock.systemDefaultZone());
+        SmartDevice inactiveCamera = new Camera(2, "Kitchen", false, Clock.systemDefaultZone());
         Mockito.when(repository.getDeviceList()).thenReturn(List.of(activeLamp, inactiveCamera));
 
         //Act

@@ -69,8 +69,8 @@ public class InMemoryDeviceRepositoryTest {
     public void findDeviceByIdShouldReturnDeviceWithSameIdAsInput() {
         //Arrange
         deviceRepository.addDevice(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
-        deviceRepository.addDevice(new Camera(2, "Kök", true, Clock.systemDefaultZone()));
-        deviceRepository.addDevice(new Lamp(3, "Toa", true, Clock.systemDefaultZone()));
+        deviceRepository.addDevice(new Camera(2, "Kitchen", true, Clock.systemDefaultZone()));
+        deviceRepository.addDevice(new Lamp(3, "Toilet", true, Clock.systemDefaultZone()));
         //Act
         SmartDevice found = deviceRepository.findDeviceById(3);
 
@@ -83,8 +83,8 @@ public class InMemoryDeviceRepositoryTest {
     public void findDeviceByIdShouldThrowExceptionWhenNoMatchIsFound() {
         //Arrange
         deviceRepository.addDevice(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
-        deviceRepository.addDevice(new Camera(2, "Kök", true, Clock.systemDefaultZone()));
-        deviceRepository.addDevice(new Lamp(3, "Toa", true, Clock.systemDefaultZone()));
+        deviceRepository.addDevice(new Camera(2, "Kitchen", true, Clock.systemDefaultZone()));
+        deviceRepository.addDevice(new Lamp(3, "Toilet", true, Clock.systemDefaultZone()));
         //Act & Assert
         assertThrows(DeviceNotFoundException.class, () -> deviceRepository.findDeviceById(4));
     }
@@ -95,7 +95,7 @@ public class InMemoryDeviceRepositoryTest {
         deviceRepository.addDevice(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
         //Act & Assert
         assertThrows(UnsupportedOperationException.class,
-                () -> deviceRepository.getDeviceList().add(new Lamp(2, "Kök", true, Clock.systemDefaultZone())));
+                () -> deviceRepository.getDeviceList().add(new Lamp(2, "Kitchen", true, Clock.systemDefaultZone())));
     }
 
     @Test
@@ -105,7 +105,7 @@ public class InMemoryDeviceRepositoryTest {
 
         //Act & Arrange
         assertThrows(DuplicateDeviceIdException.class,
-                () -> deviceRepository.addDevice(new Camera(1, "Kök", true, Clock.systemDefaultZone())));
+                () -> deviceRepository.addDevice(new Camera(1, "Kitchen", true, Clock.systemDefaultZone())));
 
     }
 
@@ -137,7 +137,7 @@ public class InMemoryDeviceRepositoryTest {
     public void removeDeviceShouldOnlyRemoveTheSpecifiedDeviceFromList() {
         //Arrange
         deviceRepository.addDevice(new Lamp(1, "Hall", true, Clock.systemDefaultZone()));
-        deviceRepository.addDevice(new Camera(2, "Kök", true, Clock.systemDefaultZone()));
+        deviceRepository.addDevice(new Camera(2, "Kitchen", true, Clock.systemDefaultZone()));
 
         //Act
         deviceRepository.removeDevice(1);

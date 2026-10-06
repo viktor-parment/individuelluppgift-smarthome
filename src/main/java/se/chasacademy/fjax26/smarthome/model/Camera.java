@@ -18,4 +18,9 @@ public class Camera extends SmartDevice{
     public boolean isRecording() {
         return isRecording;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Unit: Camera    | [Recording: %-4s] | ", isRecording ? "On" : "Off") + super.toString();
+    }
 }

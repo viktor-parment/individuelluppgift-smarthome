@@ -53,7 +53,7 @@ public abstract class SmartDevice implements Activatable {
 
     private boolean setActive(boolean active) {
         if (this.active == active) {
-            throw new DeviceStateException("Enheten är redan " + (active ? "aktiverad" : "avaktiverad"));
+            throw new DeviceStateException("Unit is already " + (active ? "activated" : "deactivated"));
         }
         this.active = active;
         if (active) {
@@ -77,7 +77,8 @@ public abstract class SmartDevice implements Activatable {
     }
 
     @Override
-    public String toString(){
-        return String.format("ID:%d Name:%s, Active:%b", id, name, active);
+    public String toString() {
+        return String.format("[ID: %1d] %-10s | %-8s | (installerad: %s)",
+                id, name, isActive() ? "Activated" : "Deactivated", installationDate.toLocalDate());
     }
 }

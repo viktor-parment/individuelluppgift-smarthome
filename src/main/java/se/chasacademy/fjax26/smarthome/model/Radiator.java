@@ -13,12 +13,17 @@ public class Radiator extends SmartDevice {
 
     public void setTargetTemperature(double targetTemperature) {
         if (targetTemperature < 0 || targetTemperature > 30){
-            throw new IllegalArgumentException("Måltemperaturen måste vara mellan 0 och 30 grader");
+            throw new IllegalArgumentException("Target temperature must be between 0 and 30 degrees");
         }
         this.targetTemperature = targetTemperature;
     }
 
     public double getTargetTemperature() {
         return targetTemperature;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Unit: Radiator  | [Target Temp: %5.1f°C] | ", targetTemperature) + super.toString();
     }
 }
