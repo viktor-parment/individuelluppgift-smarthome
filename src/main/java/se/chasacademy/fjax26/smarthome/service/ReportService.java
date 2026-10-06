@@ -18,12 +18,12 @@ public class ReportService {
 
     public boolean isDeviceActive(int id) {
         SmartDevice device = repository.findDeviceById(id);
-            return device.isActive();
+        return device.isActive();
     }
 
     public boolean isDeviceActive(String name) {
         SmartDevice device = repository.findDeviceByName(name);
-            return device.isActive();
+        return device.isActive();
     }
 
     public long countActiveDevices() {

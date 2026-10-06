@@ -9,19 +9,19 @@ public abstract class SmartDevice implements Activatable {
     private int id;
     private String name;
     private boolean active;
-    private Clock clock;
+    private final Clock clock;
     private final LocalDateTime installationDate;
     private LocalDateTime lastActivation;
     private LocalDateTime lastDeactivation;
 
     public SmartDevice(int id, String name, boolean active, Clock clock){
         if (id <= 0){
-            throw new IllegalArgumentException("Id kan inte vara negativt eller noll.");
+            throw new IllegalArgumentException("Id can't be negative or zero.");
         }
         this.id = id;
 
         if (name == null || name.isBlank()){
-            throw new IllegalArgumentException("namn kan inte vara tomt eller null.");
+            throw new IllegalArgumentException("Name can't be empty or null.");
         }
         this.name=name;
         this.active = active;
@@ -78,7 +78,7 @@ public abstract class SmartDevice implements Activatable {
 
     @Override
     public String toString() {
-        return String.format("[ID: %1d] %-10s | %-8s | (installerad: %s)",
+        return String.format("[ID: %1d] %-10s | %-8s | (installed: %s)",
                 id, name, isActive() ? "Activated" : "Deactivated", installationDate.toLocalDate());
     }
 }
